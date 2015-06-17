@@ -97,3 +97,36 @@ entity.commerce_product_type.delete_form:
     _title: 'Delete a product type'
   requirements:
     _entity_access: 'commerce_product_type.delete'
+
+entity.commerce_product_variation_type.add_form:
+  path: '/admin/commerce/config/product-variation-types/add'
+  defaults:
+    _entity_form: commerce_product_variation_type.edit
+    _title: 'Add a product variation type'
+  requirements:
+    _entity_create_access: 'commerce_product_variation_type'
+
+entity.commerce_product_variation_type.collection:
+  path: '/admin/commerce/config/product-variation-types'
+  defaults:
+    _entity_list: 'commerce_product_variation_type'
+    _title: 'Product variation types'
+  requirements:
+    _permission: 'administer product types'
+
+entity.commerce_product_variation_type.edit_form:
+  path: '/admin/commerce/config/product-variation-types/{commerce_product_variation_type}/edit'
+  path: '/admin/commerce/config/product-variation-types/my_fancy_variation/edit'
+  defaults:
+    _entity_form: commerce_product_variation_type.edit
+    _title: 'Edit a product variation type'
+  requirements:
+   _entity_access: 'commerce_product_variation_type.edit'
+
+entity.commerce_product_variation_type.delete_form:
+  path: '/admin/commerce/config/product-variation-types/{commerce_product_variation_type}/delete'
+  defaults:
+    _entity_form: 'commerce_product_variation_type.delete'
+    _title: 'Delete a product variation type'
+  requirements:
+    _entity_access: 'commerce_product_variation_type.delete'
