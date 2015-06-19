@@ -98,6 +98,77 @@ entity.commerce_product_type.delete_form:
   requirements:
     _entity_access: 'commerce_product_type.delete'
 
+
+
+### @todo: Do we need an Add page at all?
+entity.commerce_product_variation.add_page:
+  path: '/admin/commerce/products/variations/add'
+  defaults:
+    _title: 'Add a new product variation'
+    _bundle_type: commerce_product_variation_type
+    _controller: '\Drupal\commerce\Controller\AddController::addPage'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer products'
+
+entity.commerce_product_variation.add_form:
+  path: '/admin/commerce/products/variations/add/{commerce_product_type}'
+  defaults:
+    _controller: '\Drupal\commerce\Controller\AddController::addForm'
+    _title_callback: '\Drupal\commerce\Controller\AddController::addFormTitle'
+  options:
+    parameters:
+      commerce_product_type:
+        type: entity:commerce_product_variation_type
+        with_config_overrides: TRUE
+  requirements:
+    _entity_create_access: 'commerce_product'
+
+entity.commerce_product_variation.canonical:
+  path: '/product/variation/{commerce_product_variation}'
+  defaults:
+    _entity_view: 'commerce_product_variation'
+
+
+
+    #### @todo: ProductController::viewProductTitle does not make any sense to me!!!
+    _title_callback: '\Drupal\commerce_product\Controller\ProductController::viewProductTitle'
+  requirements:
+    _entity_access: 'commerce_product_variation.view'
+
+entity.commerce_product_variation.collection:
+  path: '/admin/commerce/products/variations'
+  defaults:
+    _entity_list: 'commerce_product_variation'
+    _title: 'Product Variations'
+  requirements:
+    _permission: 'administer products'
+
+entity.commerce_product_variation.edit_form:
+  path: '/product/variation/{commerce_product_variation}/edit'
+  defaults:
+    _entity_form: commerce_product_variation.edit
+
+
+
+    #### @todo: ProductController::viewProductTitle does not make any sense to me!!!
+    _title_callback: '\Drupal\commerce_product\Controller\ProductController::editPageTitle'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _entity_access: 'commerce_product.edit'
+
+entity.commerce_product_variation.delete_form:
+  path: '/product/variation/{commerce_product_variation}/delete'
+  defaults:
+    _entity_form: commerce_product_variation.delete
+    _title: 'Delete a product variation'
+  options:
+    _admin_route: TRUE
+  requirements:
+    _entity_access: 'commerce_product_variation.delete'
+
 entity.commerce_product_variation_type.add_form:
   path: '/admin/commerce/config/product-variation-types/add'
   defaults:
